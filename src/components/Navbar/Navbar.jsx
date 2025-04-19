@@ -1,8 +1,10 @@
 import React from 'react'
+import { useState } from 'react';
 import {
    Link
   } from "react-router-dom";
 export const Navbar = () => {
+    const [mobileMenu,setMobileMenu]= useState(false)
   return (
     <>
     <header className='header'>
@@ -13,7 +15,8 @@ export const Navbar = () => {
             </div>
         </div>
         <div className="navlink">
-            <ul className='nav'>
+            <ul className={mobileMenu ? 'nav-links-MobileMenu' : 'link f_flex capitalize'} 
+            onClick={() =>setMobileMenu(false)}>
                 <li>
                     <Link to={'/'} >
                         Home
@@ -45,7 +48,11 @@ export const Navbar = () => {
                     </Link>
                 </li>
             </ul>
-           
+           <button className='toggle' onClick={()=>setMobileMenu(!mobileMenu)}>
+            {
+                mobileMenu ? <i className='fas fa-times close home-btn'></i> : <i className='fas fa-bars open'></i> 
+            }
+           </button>
         </div>
     </header>
     </>
